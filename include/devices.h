@@ -17,16 +17,24 @@ enum devicesports
 {
     // Chassis Motors
     Chassis_LF = 2,
-    Chassis_LM = -4,
-    Chassis_LL = 9,
-    Chassis_RF = 3,
-    Chassis_RM = -5,
+    Chassis_LM = -3,
+    Chassis_LL = 1,
+    Chassis_RF = 8,
+    Chassis_RM = -9,
     Chassis_RL = -10,
+
+    // for the 3.25omnis 480rpm robot 
+    /*Chassis_RF = 2,
+    Chassis_RM = -4,
+    Chassis_RL = 9,
+    Chassis_LF = 8,
+    Chassis_LM = -5,
+    Chassis_LL = -10,*/
     
     // Intake Motors
-    Intake_Upper = 4, 
-    Intake_Lower = -6, 
-    Intake_Mid = 4,
+    Intake_Upper = 7, 
+    Intake_Lower = -4, 
+    Intake_Mid = 14,
 };
 
 enum buttonMap
@@ -64,7 +72,13 @@ enum buttonMap
     extern pros::MotorGroup right_mg;   // Creates right motor group
 #pragma endreigion Drivetrain
 
-#pragma region OdomSetpUp
+#pragma region Intake
+    extern pros::Motor intake_upper; // Upper intake motor
+    extern pros::Motor intake_lower; // Lower intake motor
+    extern pros::Motor intake_roller;   // Mid intake motor
+#pragma endregion Intake
+
+#pragma region LemlibSetUp
 
     // drivetrain settings
     extern lemlib::Drivetrain drivetrain; // Drivetrain instance
@@ -79,6 +93,6 @@ enum buttonMap
 
     extern lemlib::Chassis chassis; // Chassis instance
 
-#pragma endregion OdomSetpUp
+#pragma endregion LemlibSetUp
 
 #endif // _DEVICES_H_ 

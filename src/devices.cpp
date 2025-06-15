@@ -24,8 +24,14 @@ pros::MotorGroup right_mg({Chassis_RF, Chassis_RM, Chassis_RL}
 
 #pragma endregion Drivetrain
 
+#pragma region Intake
+pros::Motor intake_upper(Intake_Upper, pros::MotorGearset::blue); // Upper intake motor
+pros::Motor intake_lower(Intake_Lower, pros::MotorGearset::blue); // Lower intake motor
+pros::Motor intake_roller(Intake_Mid, pros::MotorGearset::blue); // Mid intake motor
+#pragma endregion Intake
 
-#pragma region OdomSetpUp 
+
+#pragma region LemlibSetUp 
 
 // drivetrain settings
 lemlib::Drivetrain drivetrain(&left_mg, // left motor group
@@ -40,6 +46,7 @@ lemlib::Drivetrain drivetrain(&left_mg, // left motor group
 pros::Imu imu1(3);  // Creates an IMU on port 3
 pros::Rotation vertic_encoder(-4);
 pros::Rotation horiz_encoder(5);
+
 lemlib::TrackingWheel horizontal_track(&horiz_encoder, lemlib::Omniwheel::NEW_2, 0.35); 
 lemlib::TrackingWheel vertical_track(&vertic_encoder, lemlib::Omniwheel::NEW_2, 0.9);  
 lemlib::OdomSensors sensors(&vertical_track, // vertical tracking wheel 1, set to null
@@ -81,4 +88,4 @@ lemlib::Chassis chassis(drivetrain, // drivetrain settings
                         sensors // odometry sensors
 );
 
-#pragma endregion OdomSetpUp
+#pragma endregion LemlibSetUp

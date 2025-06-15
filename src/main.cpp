@@ -1,6 +1,7 @@
 #include "main.h"
 #include "devices.h" // IWYU pragma: keep
 #include "lemlib/api.hpp" // IWYU pragma: keep
+#include <sys/_intsup.h>
 
 /**
  * A callback function for LLEMU's center button.
@@ -100,6 +101,14 @@ void opcontrol() {
 		int turn = master.get_analog(ANALOG_RIGHT_X);  // Gets the turn left/right from right joystick
 		left_mg.move(dir + turn);                      // Sets left motor voltage
 		right_mg.move(dir - turn);                     // Sets right motor voltage
-		pros::delay(20);                          // Run for 20 ms then update
+
+        // Intake Control 
+        int r1 = master.get_digital(DIGITAL_R1); 
+        int r2 = master.get_digital(DIGITAL_R2); 
+        intake_upper.move_voltage((r1 - r2) * 12000); 
+        intake_lower.move_voltage((r1 - r2) * 12000); 
+        intake_roller.move_voltage((r1 - r2) * 12000); 
+
+        pros::delay(20);                          // Run for 20 ms then update
 	}
 }
